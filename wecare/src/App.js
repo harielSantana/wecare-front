@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CuidadorSingUp from './Components/Cuidador/CuidadorSingUp';
-import UserSingUp from './Components/Usuario/UsuarioSingUp';
+import SingIn from './Components/SingIn';
+import SingUpCuidador from './Components/Cuidador/CuidadorSingUp';
+import SingUpUser from './Components/Usuario/UsuarioSingUp';
+import SingInUser from './Components/Usuario/SingIn';
+import SingInCuidador from './Components/Cuidador/SingIn';
 
 function App() {
   return (
@@ -9,8 +12,11 @@ function App() {
       <h1>API - WeCare</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<UserSingUp />} />
-          <Route path="/cuidador" element={<CuidadorSingUp />} />
+          <Route path="/logar" element={<SingIn />} />
+          <Route path="/user/login" element={<SingInUser />} />
+          <Route path="/user/cadastrar" element={<SingUpUser />} />
+          <Route path="/cuidador/login" element={<SingInCuidador />} />
+          <Route path="/cuidador/cadastrar" element={<SingUpCuidador />} />
         </Routes>
       </BrowserRouter>
     </div>
