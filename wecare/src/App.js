@@ -1,22 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SingIn from './Components/SingIn';
-import SingUpCuidador from './Components/Cuidador/CuidadorSingUp';
-import SingUpUser from './Components/Usuario/UsuarioSingUp';
-import SingInUser from './Components/Usuario/SingIn';
-import SingInCuidador from './Components/Cuidador/SingIn';
+import Navigation from './Components/Navigation';
+import Error404 from './Components/Error404';
+import CuidadorSignIn from './Components/Cuidador/CuidadorSignIn';
+import CuidadorSignUp from './Components/Cuidador/CuidadorSignUp';
+import UsuarioSignIn from './Components/Usuario/UsuarioSignIn';
+import UsuarioSignUp from './Components/Usuario/UsuarioSignUp';
 
 function App() {
   return (
     <div>
-      <h1>API - WeCare</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/logar" element={<SingIn />} />
-          <Route path="/user/login" element={<SingInUser />} />
-          <Route path="/user/cadastrar" element={<SingUpUser />} />
-          <Route path="/cuidador/login" element={<SingInCuidador />} />
-          <Route path="/cuidador/cadastrar" element={<SingUpCuidador />} />
+          <Route path="/" element={<Navigation />} />
+          <Route path="logar/usuario" element={<UsuarioSignIn />} />
+          <Route path="logar/cuidador" element={<CuidadorSignIn />} />
+          <Route path="cadastrar/usuario" element={<UsuarioSignUp />} />
+          <Route path="cadastrar/cuidador" element={<CuidadorSignUp />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </div>

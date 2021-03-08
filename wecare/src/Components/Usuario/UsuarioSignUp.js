@@ -1,7 +1,9 @@
 import React from 'react';
-import styles from './UsuarioSingUp.module.css';
+import styles from './UsuarioSignUp.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const UserSingUp = () => {
+  const navigate = useNavigate();
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [cep, setCep] = React.useState('');
@@ -10,8 +12,21 @@ const UserSingUp = () => {
   const [senha, setSenha] = React.useState('');
 
   function handleSubmit(event) {
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('email', email);
+    formData.append('cep', cep);
+    formData.append('numero', numero);
+    formData.append('uf', uf);
+    formData.append('senha', senha);
+
     event.preventDefault();
-    //Coloque a rota da API aqui pra dar o fetch
+    fetch('https://wecareapi.azurewebsites.net/api/signup', {
+      method: 'POST',
+      body: formData,
+    }).then((response) => {
+      if (response.status === 200) navigate('/');
+    });
   }
 
   return (
@@ -33,6 +48,7 @@ const UserSingUp = () => {
         <input
           type="text"
           placeholder="cep"
+          name="cep"
           value={cep}
           onChange={({ target }) => setCep(target.value)}
         />
