@@ -1,22 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navigation from './Components/Navigation';
+import Home from './Components/Home';
+import Cuidador from './Components/Cuidador/Cuidador';
+import Usuario from './Components/Usuario/Usuario';
 import Error404 from './Components/Error404';
-import CuidadorSignIn from './Components/Cuidador/CuidadorSignIn';
-import CuidadorSignUp from './Components/Cuidador/CuidadorSignUp';
-import UsuarioSignIn from './Components/Usuario/UsuarioSignIn';
-import UsuarioSignUp from './Components/Usuario/UsuarioSignUp';
+import Acessar from './Components/SignIn';
+import './App.css';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigation />} />
-          <Route path="logar/usuario" element={<UsuarioSignIn />} />
-          <Route path="logar/cuidador" element={<CuidadorSignIn />} />
-          <Route path="cadastrar/usuario" element={<UsuarioSignUp />} />
-          <Route path="cadastrar/cuidador" element={<CuidadorSignUp />} />
+          <Route path="/" element={<Home />} />
+          <Route path="acessar" element={<Acessar />} />
+          <Route path="/cuidador/*" element={<Cuidador />} />
+          <Route path="/usuario/*" element={<Usuario />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>

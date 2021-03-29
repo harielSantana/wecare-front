@@ -1,0 +1,14 @@
+.LargeButton{
+  width: 302px;
+  color: #FFFFFF;
+  background: #00ADEF;
+  height: 50px;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}

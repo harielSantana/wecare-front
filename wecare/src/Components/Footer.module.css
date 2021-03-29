@@ -1,0 +1,40 @@
+.footer{
+  width: 100%;
+  height: 385px;
+  background: #F2F2F2;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.footerContent{
+  height: fit-content;
+  text-align: center;
+}
+
+.footerContent h3{
+  font-weight: bold;
+  font-size: 36px;
+  color: #626262;
+}
+
+.h3, .contatos li{
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.contatos{
+  margin-top: 20px;
+}
+
+.contatos li {
+  list-style-type: none;
+  margin-top: 10px;
+  color: #626262
+}
+
+.svg{
+  position: relative;
+  bottom: -6px;
+  margin-right: 6px;
+}

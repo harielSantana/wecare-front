@@ -1,0 +1,43 @@
+.divCentral{
+  width: 1205px;
+  height: 905px;
+  background: linear-gradient(157.42deg, #0096E6 -3.17%, #FFFFFF 205.48%);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLogin{
+  font-family: Roboto;
+  font-style: normal;
+  color: #FFFFFF;
+  margin-bottom: 67px;
+  width: 60%;
+}
+
+.headerLogin h1{
+  font-weight: bold;
+  font-size: 90px;
+  color: #FFFFFF;
+  margin-bottom: 37px;
+}
+
+.headerLogin p{
+  font-weight: bold;
+  font-size: 24px;
+
+  width: 296px;
+  text-align: end;
+}
+
+.cadastroContainer{
+  background: #F9F9F9;
+}
+
+.cadastroContainer h2{
+  text-align: center;
+}
+
+.cadastroContainer input[type=text]{
+  width: 300px
+}
