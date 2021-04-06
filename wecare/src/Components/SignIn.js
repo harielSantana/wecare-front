@@ -1,16 +1,35 @@
 import React from 'react';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
 import Button from './Form/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Components/Usuario/UsuarioSignIn.module.css';
+import styles2 from './SignIn.module.css';
+import ReCAPTCHA from 'react-google-recaptcha';
+
+// function validateRecaptcha(value){
+//   if(value === null) {
+
+//   }
+
+// }
+function onChange(value) {
+  if (value === null || value === 0) {
+    const recaptchaValue = document.getElement('myDIV').className;
+  } else {
+    document.getElementsByTagName('ReCAPTCHA');
+  }
+
+  console.log('CAPTCHA value: ', value);
+}
 
 const SignIn = () => {
   const navigate = useNavigate();
 
+  // React.useEffect(() => {
+  //   const recapValue =
+  // })
+
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <div className={styles.containerLogin}>
           <div className={styles.headerLogin}>
@@ -28,22 +47,28 @@ const SignIn = () => {
                 Selecione uma das opções que atendam mais oque você procura:
               </p>
             </div>
-            <div style={{ width: '302px', margin: '0 auto' }}>
+            <div
+              id="form"
+              style={{ width: '302px', margin: '0 auto', display: 'none' }}
+            >
               <Button
                 text="Usuario"
-                className={styles.LargeButton}
+                className={styles2.LargeButton}
                 onClick={() => navigate('../usuario')}
               />
               <Button
                 text="Cuidador"
-                className={styles.LargeButton}
+                className={styles2.LargeButton}
                 onClick={() => navigate('../cuidador')}
               />
             </div>
+            <ReCAPTCHA
+              sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
+              onChange={onChange}
+            />
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

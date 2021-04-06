@@ -1,37 +1,49 @@
+h1,h2,h3{
+  color: #636363;
+}
+
 .divCentral{
   width: 1205px;
-  height: 905px;
-  background: linear-gradient(157.42deg, #0096E6 -3.17%, #FFFFFF 205.48%);
-
+  height: fit-content;
+  background: linear-gradient(
+157.42deg
+, #0096E6 -3.17%, #FFFFFF 205.48%);
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
 .headerLogin{
+  width: 44vw;
+  margin-bottom: 67px;
+  margin-top: 60px;
   font-family: Roboto;
   font-style: normal;
   color: #FFFFFF;
-  margin-bottom: 67px;
-  width: 60%;
 }
 
-.headerLogin h1{
+.headerLogin h1, .headerLogin p{
   font-weight: bold;
+}
+.headerLogin h1{
+  
   font-size: 90px;
   color: #FFFFFF;
   margin-bottom: 37px;
+  text-align: center;
 }
 
 .headerLogin p{
-  font-weight: bold;
   font-size: 24px;
-
   width: 296px;
-  text-align: end;
+  margin: 0 auto;
 }
 
 .cadastroContainer{
   background: #F9F9F9;
+  width: 80%;
+  display: flex;
+  justify-content: center;
 }
 
 .cadastroContainer h2{
@@ -39,5 +51,22 @@
 }
 
 .cadastroContainer input[type=text]{
-  width: 300px
+  width: 100%
+}
+
+.title{
+  color: #636363;
+  text-align: center;
+  font-size: 30px;
+  margin: 55px 0;
+}
+
+.Linha {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.Linha div:first-child {
+  margin-right: 10px;
 }

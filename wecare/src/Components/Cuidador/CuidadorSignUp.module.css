@@ -2,19 +2,13 @@ h1,h2,h3{
   color: #636363;
 }
 
-.container{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .box {
-  max-width: 1200px;
   width: 1200px;
+  max-width: 1200px;
   height: auto;
+  margin: 0 auto;
   background: linear-gradient(157.42deg, #0096E6 -3.17%, #FFFFFF 205.48%);
+
   display: flex;
 }
 
@@ -59,9 +53,8 @@ h1,h2,h3{
 
 
 .Linha {
-  margin: 0px 60px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .Linha div:first-child {
@@ -75,6 +68,11 @@ h1,h2,h3{
   justify-content: center;
   align-items: center
   
+}
+
+.Endereco{
+  margin: 20px 0;
+  text-align: center; 
 }
 
 .textarea{

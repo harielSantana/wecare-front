@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UsuarioSignUp.module.css';
+import Input from '../Form/Input';
+import Button from '../Form/Button';
 
 const UserSingUp = () => {
   const navigate = useNavigate();
@@ -12,9 +14,6 @@ const UserSingUp = () => {
   const [senha, setSenha] = React.useState('');
 
   function handleSubmit(event) {
-    event.preventDefault();
-    console.log(event.target[0].value);
-
     const formData = new FormData();
     formData.append('nome', nome);
     formData.append('email', email);
@@ -23,11 +22,13 @@ const UserSingUp = () => {
     formData.append('uf', uf);
     formData.append('senha', senha);
 
+    event.preventDefault();
+
     fetch('https://wecareapi.azurewebsites.net/api/signup', {
       method: 'POST',
       body: formData,
     }).then((response) => {
-      if (response.status === 200) navigate('/');
+      if (response.status === 200) navigate('/usuario');
     });
   }
 
@@ -42,45 +43,67 @@ const UserSingUp = () => {
       </div>
       <div className={styles.cadastroContainer}>
         <form className={styles.cadastroForm} onSubmit={handleSubmit}>
-          <h2>Cadastro de Cuidador Wecare</h2>
-          <input
-            type="text"
-            placeholder="nome"
-            value={nome}
-            onChange={({ target }) => setNome(target.value)}
+          <h2 className={styles.title}>
+            Cadastro de Usuário na{' '}
+            <span style={{ color: '#0096E6' }}>Wecare</span>
+          </h2>
+          <div className={styles.Linha}>
+            <Input
+              type="text"
+              label="Nome"
+              placeholder="nome"
+              value={nome}
+              onChange={({ target }) => setNome(target.value)}
+            />
+            <Input
+              type="text"
+              label="E-mail"
+              placeholder="email"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+            />
+          </div>
+
+          <div className={styles.Linha}>
+            <Input
+              type="text"
+              label="CEP"
+              placeholder="cep"
+              name="cep"
+              value={cep}
+              onChange={({ target }) => setCep(target.value)}
+            />
+            <Input
+              type="text"
+              label="Numero"
+              placeholder="numero"
+              value={numero}
+              onChange={({ target }) => setNumero(target.value)}
+            />
+          </div>
+
+          <div className={styles.Linha}>
+            <Input
+              type="text"
+              label="Estado"
+              placeholder="Estado"
+              value={uf}
+              onChange={({ target }) => setUf(target.value)}
+            />
+            <Input
+              type="text"
+              label="Senha"
+              placeholder="senha"
+              value={senha}
+              onChange={({ target }) => setSenha(target.value)}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className={styles.btnConfirmar}
+            text="Confirmar"
           />
-          <input
-            type="text"
-            placeholder="email"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
-          />
-          <input
-            type="text"
-            placeholder="cep"
-            name="cep"
-            value={cep}
-            onChange={({ target }) => setCep(target.value)}
-          />
-          <input
-            type="text"
-            placeholder="numero"
-            value={numero}
-            onChange={({ target }) => setNumero(target.value)}
-          />
-          <input
-            type="text"
-            placeholder="UF"
-            value={uf}
-            onChange={({ target }) => setUf(target.value)}
-          />
-          <input
-            type="text"
-            placeholder="senha"
-            value={senha}
-            onChange={({ target }) => setSenha(target.value)}
-          />
-          <button type="submit">Enviar</button>
         </form>
       </div>
     </div>

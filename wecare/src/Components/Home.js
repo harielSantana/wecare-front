@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 
 import styles from './Home.module.css';
 import undraw_people from '../assets/undrawteste1.png';
@@ -10,8 +8,6 @@ import { ReactComponent as SvgWecare } from '../assets/svg-wecare.svg';
 const Home = () => {
   return (
     <>
-      <Header />
-
       <div className={styles.homePrincipal}>
         <SvgWecare className={styles.svgwecare} />
         <div className={styles.SideContent}>
@@ -48,8 +44,6 @@ const Home = () => {
           </span>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

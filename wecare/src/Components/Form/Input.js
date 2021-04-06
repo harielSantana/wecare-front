@@ -17,6 +17,7 @@ const Input = ({ label, type, name, value, placeholder, onChange, onBlur }) => {
         onChange={onChange}
         onBlur={onBlur}
       />
+      {/* {error && <p className={styles.error}>{error}</p>} */}
     </div>
   );
 };

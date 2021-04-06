@@ -79,11 +79,10 @@ align-items: center;
 
 .formLogin input{
   width: 302px;
-  height: 56px;
-
+  padding: 20px 10px;
   background: #ECECEC;
   border-radius: 6px;
-  border:none;
+  border: none;
   margin-bottom: 14px;
 }
 
@@ -99,13 +98,15 @@ align-items: center;
 }
 
 .btnAcessar, .btnCriarConta{
-  height: 50px;
-  border:none;
+  padding: 15px;
   border-radius: 9px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
+  border:none;
+
   font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 14px;                                
+  font-weight: 500;
+  
   letter-spacing: 0.04em;
 }
 

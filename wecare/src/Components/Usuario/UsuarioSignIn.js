@@ -7,7 +7,7 @@ const SignIn = () => {
   const [email, setEmail] = React.useState('');
   const [senha, setSenha] = React.useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('senha', senha);
@@ -17,7 +17,13 @@ const SignIn = () => {
       method: 'POST',
       body: formData,
     }).then((response) => {
-      if (response.status === 200) navigate('/');
+      console.log(response.body);
+      if (response.status === 200) {
+        navigate('/');
+        console.log('Você logou');
+      } else {
+        console.log('Não deu pra logar');
+      }
     });
   }
 
