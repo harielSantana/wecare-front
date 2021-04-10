@@ -1,32 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './Form/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Components/Usuario/UsuarioSignIn.module.css';
 import styles2 from './SignIn.module.css';
-import ReCAPTCHA from 'react-google-recaptcha';
-
-// function validateRecaptcha(value){
-//   if(value === null) {
-
-//   }
-
-// }
-function onChange(value) {
-  if (value === null || value === 0) {
-    const recaptchaValue = document.getElement('myDIV').className;
-  } else {
-    document.getElementsByTagName('ReCAPTCHA');
-  }
-
-  console.log('CAPTCHA value: ', value);
-}
+import ReCaptcha from '../Components/Form/Captcha';
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [value, setValue] = React.useState('');
 
-  // React.useEffect(() => {
-  //   const recapValue =
-  // })
+  const On;
 
   return (
     <>
@@ -62,10 +45,9 @@ const SignIn = () => {
                 onClick={() => navigate('../cuidador')}
               />
             </div>
-            <ReCAPTCHA
-              sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
-              onChange={onChange}
-            />
+            <div>
+              <ReCaptcha onVerifyCaptcha={onVerifyCaptcha} />
+            </div>
           </div>
         </div>
       </div>
@@ -74,3 +56,7 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+const [ativo, setAtivo] = React.useState(false);
+
+setAtivo(() => setAtivo(!ativo));
