@@ -3,7 +3,24 @@ import Button from './Form/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Components/Usuario/UsuarioSignIn.module.css';
 import styles2 from './SignIn.module.css';
-import ReCaptcha from '../Components/Form/Captcha';
+
+import ReCAPTCHA from 'react-google-recaptcha';
+
+// function validateRecaptcha(value){
+//   if(value === null) {
+
+//   }
+
+// }
+function onChange(value) {
+  if (value === "") {
+    console.log("Your not a HUMAN")
+  } else {
+    document.getElementById("form").style.display = "inline"
+    document.getElementById("recap").style.display = "none"
+  }
+
+}
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -45,8 +62,16 @@ const SignIn = () => {
                 onClick={() => navigate('../cuidador')}
               />
             </div>
+<<<<<<< HEAD
             <div>
               <ReCaptcha onVerifyCaptcha={onVerifyCaptcha} />
+=======
+            <div id="recap" style={{display:"inline"}}>
+            <ReCAPTCHA
+              sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
+              onChange={onChange}
+            />
+>>>>>>> 7dd762498482187a37742a1dc5c40b3eb3fe2ec5
             </div>
           </div>
         </div>
