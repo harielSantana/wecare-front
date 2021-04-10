@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './UsuarioSignUp.module.css';
 import Input from '../Form/Input';
 import Button from '../Form/Button';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const UserSingUp = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const UserSingUp = () => {
   const [uf, setUf] = React.useState('');
   const [senha, setSenha] = React.useState('');
 
+  
   function handleSubmit(event) {
     const formData = new FormData();
     formData.append('nome', nome);
@@ -30,6 +32,16 @@ const UserSingUp = () => {
     }).then((response) => {
       if (response.status === 200) navigate('/usuario');
     });
+  }
+
+
+  function onChange(value) {
+    if (value === "") {
+      console.log("Your not a HUMAN")
+    } else {
+      document.getElementById("btnConfirmar").setAttribute("disabled",false)
+    }
+  
   }
 
   return (
@@ -100,10 +112,17 @@ const UserSingUp = () => {
           </div>
 
           <Button
+            id = "btnConfirmar"
             type="submit"
             className={styles.btnConfirmar}
             text="Confirmar"
+            disabled
           />
+
+            <ReCAPTCHA
+              sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
+              onChange={onChange}
+            />
         </form>
       </div>
     </div>

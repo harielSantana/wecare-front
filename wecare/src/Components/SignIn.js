@@ -12,13 +12,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 // }
 function onChange(value) {
-  if (value === null || value === 0) {
-    const recaptchaValue = document.getElement('myDIV').className;
+  if (value === "") {
+    console.log("Your not a HUMAN")
   } else {
-    document.getElementsByTagName('ReCAPTCHA');
+    document.getElementById("form").style.display = "inline"
   }
 
-  console.log('CAPTCHA value: ', value);
 }
 
 const SignIn = () => {
