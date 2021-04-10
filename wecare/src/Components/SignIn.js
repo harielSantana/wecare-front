@@ -16,6 +16,7 @@ function onChange(value) {
     console.log("Your not a HUMAN")
   } else {
     document.getElementById("form").style.display = "inline"
+    document.getElementById("recap").style.display = "none"
   }
 
 }
@@ -61,10 +62,12 @@ const SignIn = () => {
                 onClick={() => navigate('../cuidador')}
               />
             </div>
+            <div id="recap" style={{display:"inline"}}>
             <ReCAPTCHA
               sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
               onChange={onChange}
             />
+            </div>
           </div>
         </div>
       </div>

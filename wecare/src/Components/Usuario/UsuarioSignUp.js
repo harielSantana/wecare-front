@@ -13,35 +13,41 @@ const UserSingUp = () => {
   const [numero, setNumero] = React.useState('');
   const [uf, setUf] = React.useState('');
   const [senha, setSenha] = React.useState('');
+  var recap = '';
 
   
   function handleSubmit(event) {
-    const formData = new FormData();
-    formData.append('nome', nome);
-    formData.append('email', email);
-    formData.append('cep', cep);
-    formData.append('numero', numero);
-    formData.append('uf', uf);
-    formData.append('senha', senha);
+    if(recap !== "")
+    {
+      const formData = new FormData();
+      formData.append('nome', nome);
+      formData.append('email', email);
+      formData.append('cep', cep);
+      formData.append('numero', numero);
+      formData.append('uf', uf);
+      formData.append('senha', senha);
 
-    event.preventDefault();
+      event.preventDefault();
 
-    fetch('https://wecareapi.azurewebsites.net/api/signup', {
+      fetch('https://wecareapi.azurewebsites.net/api/signup', {
       method: 'POST',
       body: formData,
-    }).then((response) => {
+      }).then((response) => {
       if (response.status === 200) navigate('/usuario');
-    });
+      });
+    }
+    else
+    {
+      document.getElementById("errmsg").style.display="inline"
+    }
+    
   }
 
 
   function onChange(value) {
-    if (value === "") {
-      console.log("Your not a HUMAN")
-    } else {
-      document.getElementById("btnConfirmar").setAttribute("disabled",false)
+    if (value !== "") {
+      recap = value
     }
-  
   }
 
   return (
@@ -110,19 +116,16 @@ const UserSingUp = () => {
               onChange={({ target }) => setSenha(target.value)}
             />
           </div>
-
           <Button
-            id = "btnConfirmar"
             type="submit"
             className={styles.btnConfirmar}
             text="Confirmar"
-            disabled
           />
-
             <ReCAPTCHA
               sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
               onChange={onChange}
             />
+            <span id="errmsg" style={{display:"none",color:"red"}}>Valide o recaptcha !!!</span>
         </form>
       </div>
     </div>
