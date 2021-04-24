@@ -15,7 +15,7 @@ function onChange(value) {
   if (value === '') {
     console.log('Your not a HUMAN');
   } else {
-    document.getElementById('form').style.display = 'inline';
+    document.getElementById('form').style.display = 'flex';
     document.getElementById('recap').style.display = 'none';
   }
 }
@@ -46,10 +46,7 @@ const SignIn = () => {
                 Selecione uma das opções que atendam mais oque você procura:
               </p>
             </div>
-            <div
-              id="form"
-              style={{ width: '302px', margin: '0 auto', display: 'none' }}
-            >
+            <div id="form" style={{ display: 'none' }} className={styles2.Form}>
               <Button
                 text="Usuario"
                 className={styles2.LargeButton}
@@ -61,7 +58,11 @@ const SignIn = () => {
                 onClick={() => navigate('../cuidador')}
               />
             </div>
-            <div id="recap" style={{ display: 'inline' }}>
+            <div
+              id="recap"
+              style={{ display: 'flex' }}
+              className={styles2.ReCAPTCHA}
+            >
               <ReCAPTCHA
                 sitekey="6LdOA54aAAAAAOaPN9eZNpwlsUKvvUVrj2kD0QcE"
                 onChange={onChange}

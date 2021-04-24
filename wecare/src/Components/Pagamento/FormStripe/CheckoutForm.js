@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import styles from '../Pagamento.module.css';
 
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);

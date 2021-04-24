@@ -1,4 +1,4 @@
-
+/* 
 #root {
   display: flex;
   align-items: center;
@@ -71,9 +71,11 @@ input {
 
 #payment-request-button {
   margin-bottom: 32px;
-}
+} */
 
 /* Buttons and links */
+
+/* 
 button {
   background: #5469d4;
   font-family: Arial, sans-serif;
@@ -97,10 +99,10 @@ button:hover {
 button:disabled {
   opacity: 0.5;
   cursor: default;
-}
+} */
 
 /* spinner/processing state, errors */
-.spinner,
+/* .spinner,
 .spinner:before,
 .spinner:after {
   border-radius: 50%;
@@ -167,4 +169,4 @@ button:disabled {
   form {
     width: 80vw;
   }
-}
+} */
