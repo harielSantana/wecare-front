@@ -8,7 +8,7 @@ import { ReactComponent as SvgWecare } from '../assets/svg-wecare.svg';
 const Home = () => {
   return (
     <>
-      <div className={styles.homePrincipal}>
+      <div className={styles.homePrincipal} style={{ marginTop: '-5rem' }}>
         <SvgWecare className={styles.svgwecare} />
         <div className={styles.SideContent}>
           <h1>Wecare</h1>

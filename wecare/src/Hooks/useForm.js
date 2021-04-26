@@ -6,7 +6,7 @@ const types = {
     message: 'Preencha um email válido',
   },
   CPF: {
-    regex: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+    regex: /^\d{3}\.\d{3}\.\d{3}\d{2}$/,
     message: 'Preencha um CPF válido',
   },
   CEP: {
@@ -14,7 +14,7 @@ const types = {
     message: 'Preencha um CEP válido. Ex: 03064-000',
   },
   celular: {
-    regex: /^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}\-[0-9]{4}$/,
+    regex: /^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}[0-9]{4}$/,
     message: 'Preencha um número válido. Ex: 119090-3101',
   },
 };
@@ -23,7 +23,7 @@ const useForm = (type) => {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(null);
 
-  function validadete(value) {
+  function validate(value) {
     if (type === false) return true;
     if (value.length === 0) {
       setError('Preencha um valor.');
@@ -48,7 +48,7 @@ const useForm = (type) => {
     onChange,
     error,
     validade: () => validate(value),
-    onBlur: () => validade(value),
+    onBlur: () => validate(value),
   };
 };
 

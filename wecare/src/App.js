@@ -9,21 +9,24 @@ import Pagamento from './Components/Pagamento/Pagamento';
 import './App.css';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import { UserStorage } from './UserContext';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="acessar" element={<Acessar />} />
-          <Route path="/cuidador/*" element={<Cuidador />} />
-          <Route path="/usuario/*" element={<Usuario />} />
-          <Route path="/pagamento/*" element={<Pagamento />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-        <Footer />
+        <UserStorage>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="acessar" element={<Acessar />} />
+            <Route path="/cuidador/*" element={<Cuidador />} />
+            <Route path="/usuario/*" element={<Usuario />} />
+            <Route path="/pagamento/*" element={<Pagamento />} />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+          <Footer />
+        </UserStorage>
       </BrowserRouter>
     </div>
   );

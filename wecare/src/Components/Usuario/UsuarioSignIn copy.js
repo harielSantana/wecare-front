@@ -1,25 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UsuarioSignIn.module.css';
-import { UserContext } from '../../UserContext';
-import useForm from '../../Hooks/useForm';
-import Input from '../Form/Input';
-import Button from '../Form/Button';
 
 const SignIn = () => {
   const navigate = useNavigate();
-
-  const email = useForm();
-  const senha = useForm();
-
-  const { userLogin, error, loading } = React.useContext(UserContext);
+  const [email, setEmail] = React.useState('');
+  const [senha, setSenha] = React.useState('');
 
   async function handleSubmit(event) {
-    event.preventDefault();
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('senha', senha);
 
-    if (email.validate() && senha.validate()) {
-      userLogin(email.value, senha.value);
-    }
+    event.preventDefault();
+    fetch('https://wecareapi.azurewebsites.net/api/login', {
+      method: 'POST',
+      body: formData,
+    }).then((response) => {
+      console.log(response.body);
+      if (response.status === 200) {
+        navigate('/');
+        console.log('Você logou');
+      } else {
+        console.log('Não deu pra logar');
+      }
+    });
   }
 
   return (
@@ -42,19 +47,27 @@ const SignIn = () => {
             </p>
           </div>
           <form className={styles.formLogin} onSubmit={handleSubmit}>
-            <Input label="E-mail" type="text" name="email" {...email} />
-            <Input label="Senha" type="password" name="senha" {...senha} />
-            {loading ? (
-              <Button>Carregando</Button>
-            ) : (
-              <button className={styles.btnAcessar}>Entrar</button>
-            )}
+            <input
+              type="text"
+              placeholder="email"
+              value={email}
+              name="email"
+              onChange={({ target }) => setEmail(target.value)}
+            />
+            <input
+              type="password"
+              placeholder="senha"
+              value={senha}
+              name="senha"
+              onChange={({ target }) => setSenha(target.value)}
+            />
             <button
               className={styles.btnCriarConta}
               onClick={() => navigate('cadastrar')}
             >
               Criar conta
             </button>
+            <button className={styles.btnAcessar}>Entrar</button>
           </form>
         </div>
       </div>

@@ -3,33 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import styles from './UsuarioSignUp.module.css';
 import Input from '../Form/Input';
 import Button from '../Form/Button';
+import useForm from '../../Hooks/useForm';
+import useFetch from '../../Hooks/useFetch';
+import { UserContext } from '../../UserContext';
+import { USER_POST } from '../../Api';
 
 const UserSingUp = () => {
   const navigate = useNavigate();
-  const [nome, setNome] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [cep, setCep] = React.useState('');
-  const [numero, setNumero] = React.useState('');
-  const [uf, setUf] = React.useState('');
-  const [senha, setSenha] = React.useState('');
+  const nome = useForm();
+  const email = useForm();
+  const cep = useForm();
+  const numero = useForm();
+  const uf = useForm();
+  const senha = useForm();
 
-  function handleSubmit(event) {
-    const formData = new FormData();
-    formData.append('nome', nome);
-    formData.append('email', email);
-    formData.append('cep', cep);
-    formData.append('numero', numero);
-    formData.append('uf', uf);
-    formData.append('senha', senha);
+  const { userLogin } = React.useContext(UserContext);
+  const { loading, error, request } = useFetch();
 
+  async function handleSubmit(event) {
     event.preventDefault();
-
-    fetch('https://wecareapi.azurewebsites.net/api/signup', {
-      method: 'POST',
-      body: formData,
-    }).then((response) => {
-      if (response.status === 200) navigate('/usuario');
+    const { url, options } = USER_POST({
+      nome: nome.value,
+      email: email.value,
+      cep: cep.value,
+      numero: numero.value,
+      uf: uf.value,
+      senha: senha.value,
     });
+    const { response } = await request(url, options);
+    if (response.status === 200) userLogin(nome.value, senha.value);
   }
 
   return (
@@ -48,19 +50,12 @@ const UserSingUp = () => {
             <span style={{ color: '#0096E6' }}>Wecare</span>
           </h2>
           <div className={styles.Linha}>
-            <Input
-              type="text"
-              label="Nome"
-              placeholder="nome"
-              value={nome}
-              onChange={({ target }) => setNome(target.value)}
-            />
+            <Input type="text" label="Nome" placeholder="nome" value={nome} />
             <Input
               type="text"
               label="E-mail"
               placeholder="email"
               value={email}
-              onChange={({ target }) => setEmail(target.value)}
             />
           </div>
 
@@ -71,31 +66,22 @@ const UserSingUp = () => {
               placeholder="cep"
               name="cep"
               value={cep}
-              onChange={({ target }) => setCep(target.value)}
             />
             <Input
               type="text"
               label="Numero"
               placeholder="numero"
               value={numero}
-              onChange={({ target }) => setNumero(target.value)}
             />
           </div>
 
           <div className={styles.Linha}>
-            <Input
-              type="text"
-              label="Estado"
-              placeholder="Estado"
-              value={uf}
-              onChange={({ target }) => setUf(target.value)}
-            />
+            <Input type="text" label="Estado" placeholder="Estado" value={uf} />
             <Input
               type="text"
               label="Senha"
               placeholder="senha"
               value={senha}
-              onChange={({ target }) => setSenha(target.value)}
             />
           </div>
           <Button
