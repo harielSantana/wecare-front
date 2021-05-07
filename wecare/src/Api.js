@@ -15,7 +15,7 @@ export function CAREGIVER_POST(body) {
 
 export function USER_POST(body) {
   return {
-    url: API_URL + '/signup',
+    url: API_URL + '/login',
     options: {
       method: 'POST',
       headers: {

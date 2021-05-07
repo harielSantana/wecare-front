@@ -5,12 +5,6 @@ import styles from '../Components/Usuario/UsuarioSignIn.module.css';
 import styles2 from './SignIn.module.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-// function validateRecaptcha(value){
-//   if(value === null) {
-
-//   }
-
-// }
 function onChange(value) {
   if (value === '') {
     console.log('Your not a HUMAN');
@@ -22,10 +16,6 @@ function onChange(value) {
 
 const SignIn = () => {
   const navigate = useNavigate();
-
-  // React.useEffect(() => {
-  //   const recapValue =
-  // })
 
   return (
     <>

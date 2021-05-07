@@ -7,7 +7,7 @@ import UsuarioSignUp from './UsuarioSignUp';
 const Usuario = () => {
   const { login } = React.useContext(UserContext);
 
-  if (login === true) return <Navigate to="../../" />;
+  if (login === true) return <Navigate to="../" />;
   return (
     <>
       <Routes>

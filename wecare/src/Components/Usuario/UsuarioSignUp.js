@@ -11,9 +11,9 @@ import { USER_POST } from '../../Api';
 const UserSingUp = () => {
   const navigate = useNavigate();
   const nome = useForm();
-  const email = useForm();
-  const cep = useForm();
-  const numero = useForm();
+  const email = useForm('email');
+  const cep = useForm('cep');
+  const numero = useForm('celular');
   const uf = useForm();
   const senha = useForm();
 
@@ -50,39 +50,18 @@ const UserSingUp = () => {
             <span style={{ color: '#0096E6' }}>Wecare</span>
           </h2>
           <div className={styles.Linha}>
-            <Input type="text" label="Nome" placeholder="nome" value={nome} />
-            <Input
-              type="text"
-              label="E-mail"
-              placeholder="email"
-              value={email}
-            />
+            <Input type="text" label="Nome" {...nome} />
+            <Input type="text" label="E-mail" {...email} />
           </div>
 
           <div className={styles.Linha}>
-            <Input
-              type="text"
-              label="CEP"
-              placeholder="cep"
-              name="cep"
-              value={cep}
-            />
-            <Input
-              type="text"
-              label="Numero"
-              placeholder="numero"
-              value={numero}
-            />
+            <Input type="text" label="CEP" name="cep" {...cep} />
+            <Input type="text" label="Numero" {...numero} />
           </div>
 
           <div className={styles.Linha}>
-            <Input type="text" label="Estado" placeholder="Estado" value={uf} />
-            <Input
-              type="text"
-              label="Senha"
-              placeholder="senha"
-              value={senha}
-            />
+            <Input type="text" label="Estado" {...uf} />
+            <Input type="password" label="Senha" {...senha} />
           </div>
           <Button
             type="submit"

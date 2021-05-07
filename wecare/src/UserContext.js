@@ -1,5 +1,5 @@
 import React from 'react';
-import { USER_POST } from './Api';
+import { CAREGIVER_POST, USER_POST } from './Api';
 import { useNavigate } from 'react-router-dom';
 
 export const UserContext = React.createContext();
@@ -27,9 +27,33 @@ export const UserStorage = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      const { url, options } = USER_POST({ username, password });
-      const tokenRes = await fetch(url, options);
-      const { token } = await tokenRes.json();
+      const { url, options } = USER_POST({
+        email: username,
+        senha: password,
+      });
+      const response = await fetch(url, options);
+      const { token, verificado } = await response.json();
+      console.log(token, verificado);
+      window.localStorage.setItem('token', token);
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function caregiverLogin(username, password) {
+    try {
+      setError(null);
+      setLoading(true);
+      const { url, options } = CAREGIVER_POST({
+        email: username,
+        senha: password,
+      });
+      const response = await fetch(url, options);
+      const { token, verificado } = await response.json();
       window.localStorage.setItem('token', token);
       navigate('/');
     } catch (err) {
@@ -42,7 +66,15 @@ export const UserStorage = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ userLogin, userLogout, data, error, loading, login }}
+      value={{
+        userLogin,
+        caregiverLogin,
+        userLogout,
+        data,
+        error,
+        loading,
+        login,
+      }}
     >
       {children}
     </UserContext.Provider>

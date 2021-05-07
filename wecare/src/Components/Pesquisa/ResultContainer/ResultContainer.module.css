@@ -1,0 +1,34 @@
+
+.resultContainer{
+  width: 70vw;
+  height: auto;
+
+  padding: 1rem;
+  border-radius: 5px;
+  background: #0699E8
+}
+
+.person{
+  width: auto;
+  height: 8 vh;
+  background:#FFFFFF;
+  
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+
+
+.person ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  padding: 30px;
+}
+
+.person ul li{
+  font-family: 'Roboto', sans-serif;
+}
+

@@ -4,52 +4,53 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../Form/Input';
 import Textarea from '../Form/TextArea';
 import Button from '../Form/Button';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import CheckoutForm from '../Pagamento/FormStripe/CheckoutForm';
+import useForm from '../../Hooks/useForm';
+import { UserContext } from '../../UserContext';
+import useFetch from '../../Hooks/useFetch';
+import { CAREGIVER_POST } from '../../Api';
 
 const CuidadorSingUp = () => {
   const navigate = useNavigate();
-  const [nome, setNome] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [senha, setSenha] = React.useState('');
-  const [confirmaSenha, setConfirmaSenha] = React.useState('');
 
-  const [cpf, setCpf] = React.useState('');
-  const [telefone, setTelefone] = React.useState('');
-  const [valorHora, setValorHora] = React.useState('');
-  const [resumo, setResumo] = React.useState('');
+  const nome = useForm();
+  const email = useForm();
+  const senha = useForm();
+  const confirmaSenha = useForm();
 
-  const [cep, setCep] = React.useState('');
-  const [estado, setEstado] = React.useState('');
-  const [numero, setNumero] = React.useState('');
+  const cpf = useForm();
+  const telefone = useForm();
+  const valorHora = useForm();
+  const resumo = useForm();
 
-  function handleSubmit(event) {
-    const formData = new FormData();
-    formData.append('nome', nome);
-    formData.append('email', email);
-    formData.append('senha', senha);
+  const cep = useForm();
+  const estado = useForm();
+  const numero = useForm();
 
-    formData.append('cpf', cpf);
-    formData.append('telefone', telefone);
-    formData.append('valorHora', valorHora);
-    formData.append('resumo', resumo);
+  const { caregiverLogin } = React.useContext(UserContext);
+  const { login, error, request } = useFetch();
 
-    formData.append('cep', cep);
-    formData.append('numero', numero);
-    formData.append('uf', estado);
-
-    console.log(formData);
-
+  async function handleSubmit(event) {
     event.preventDefault();
-    fetch('https://wecareapi.azurewebsites.net/api/signup/caregiver', {
-      method: 'POST',
-      body: formData,
-    }).then((response) => {
-      const json = response.json();
-      console.log(json);
-      if (response.status === 200) navigate('/');
+
+    const { url, options } = CAREGIVER_POST({
+      nome: nome,
+      email: email,
+      senha: senha,
+      confirmaSenha: confirmaSenha,
+
+      cpf: cpf,
+      telefone: telefone,
+      valorHora: valorHora,
+      resumo: resumo,
+
+      cep: cep,
+      estado: estado,
+      numero: numero,
     });
+    const { response } = await request(url, options);
+    if (response.status == 200) caregiverLogin(nome.value, senha.value);
   }
 
   return (
@@ -62,135 +63,57 @@ const CuidadorSingUp = () => {
         </p>
       </div>
 
-      <Tabs>
-        <TabList>
-          <Tab>Cadastro de Usuário</Tab>
-          <Tab>Forma de Pagamento</Tab>
-        </TabList>
+      <form className={styles.formCadastro} onSubmit={handleSubmit}>
+        <h2 className={styles.title}>
+          Cadastro de Cuidador na{' '}
+          <span style={{ color: '#0096E6' }}>Wecare</span>
+        </h2>
+        <div className={styles.Linha}>
+          <Input type="text" label="Usuário" {...nome} />
+          <Input type="text" label="Email" {...email} />
+        </div>
 
-        <TabPanel>
-          <form className={styles.formCadastro} onSubmit={handleSubmit}>
-            <h2 className={styles.title}>
-              Cadastro de Cuidador na{' '}
-              <span style={{ color: '#0096E6' }}>Wecare</span>
-            </h2>
-            <div className={styles.Linha}>
-              <Input
-                type="text"
-                label="Usuário"
-                placeholder="yourteam23"
-                value={nome}
-                onChange={({ target }) => setNome(target.value)}
-              />
+        <div className={styles.Linha}>
+          <Input type="password" label="Senha" {...senha} />
+          <Input type="password" label="Confirmar Senha" {...confirmaSenha} />
+        </div>
 
-              <Input
-                type="text"
-                label="Email"
-                placeholder="teste@gmail.com"
-                value={email}
-                onChange={({ target }) => setEmail(target.value)}
-              />
-            </div>
+        <div className={styles.Linha}>
+          <Input type="text" label="CPF" {...cpf} />
+          <Input type="text" label="Telefone" {...telefone} />
+        </div>
 
-            <div className={styles.Linha}>
-              <Input
-                type="password"
-                label="Senha"
-                placeholder="******"
-                value={senha}
-                onChange={({ target }) => setSenha(target.value)}
-              />
+        <div className={styles.Linha}>
+          <Input type="text" label="Valor Hora" {...valorHora} />
+        </div>
 
-              <Input
-                type="password"
-                label="Confirmar Senha"
-                placeholder="******"
-                value={confirmaSenha}
-                onChange={({ target }) => setConfirmaSenha(target.value)}
-              />
-            </div>
+        <div className={styles.LinhaText}>
+          <Textarea
+            name="Resumo Profissional"
+            className={styles.textarea}
+            {...resumo}
+          />
+        </div>
 
-            <div className={styles.Linha}>
-              <Input
-                type="text"
-                label="CPF"
-                placeholder="11111.3333.21212-13"
-                value={cpf}
-                onChange={({ target }) => setCpf(target.value)}
-              />
+        <h3 className={styles.Endereco}>Endereço</h3>
 
-              <Input
-                type="text"
-                label="Telefone"
-                placeholder="telefone"
-                value={telefone}
-                onChange={({ target }) => setTelefone(target.value)}
-              />
-            </div>
+        <div className={styles.Linha}>
+          <Input type="text" label="CEP" {...cep} />
+          <Input type="text" label="Estado" {...estado} />
+        </div>
 
-            <div className={styles.Linha}>
-              <Input
-                type="text"
-                label="Valor Hora"
-                placeholder="R$ 32.00"
-                value={valorHora}
-                onChange={({ target }) => setValorHora(target.value)}
-              />
-            </div>
+        <div className={styles.Linha}>
+          <Input type="text" label="numero" {...numero} />
+        </div>
 
-            <div className={styles.LinhaText}>
-              <Textarea
-                name="Resumo Profissional"
-                value={resumo}
-                className={styles.textarea}
-                placeholder="Digite aqui um resumo sobre você e sua carreira"
-                onChange={({ target }) => setResumo(target.value)}
-              />
-            </div>
-
-            <h3 className={styles.Endereco}>Endereço</h3>
-
-            <div className={styles.Linha}>
-              <Input
-                type="text"
-                label="CEP"
-                placeholder="CEP"
-                value={cep}
-                onChange={({ target }) => setCep(target.value)}
-              />
-
-              <Input
-                type="text"
-                label="Estado"
-                placeholder="estado"
-                value={estado}
-                onChange={({ target }) => setEstado(target.value)}
-              />
-            </div>
-
-            <div className={styles.Linha}>
-              <Input
-                type="text"
-                label="numero"
-                placeholder="Numero"
-                value={numero}
-                onChange={({ target }) => setNumero(target.value)}
-              />
-            </div>
-
-            <div className={styles.Linha}>
-              <Button
-                type="submit"
-                className={styles.btnConfirmar}
-                text="Confirmar"
-              />
-            </div>
-          </form>
-        </TabPanel>
-        <TabPanel>
-          <CheckoutForm />
-        </TabPanel>
-      </Tabs>
+        <div className={styles.Linha}>
+          <Button
+            type="submit"
+            className={styles.btnConfirmar}
+            text="Confirmar"
+          />
+        </div>
+      </form>
     </div>
   );
 };

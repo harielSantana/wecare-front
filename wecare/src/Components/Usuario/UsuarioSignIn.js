@@ -8,8 +8,7 @@ import Button from '../Form/Button';
 
 const SignIn = () => {
   const navigate = useNavigate();
-
-  const email = useForm();
+  const email = useForm('email');
   const senha = useForm();
 
   const { userLogin, error, loading } = React.useContext(UserContext);
@@ -17,7 +16,7 @@ const SignIn = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (email.validate() && senha.validate()) {
+    if (email.validade() && senha.validade()) {
       userLogin(email.value, senha.value);
     }
   }
@@ -45,7 +44,7 @@ const SignIn = () => {
             <Input label="E-mail" type="text" name="email" {...email} />
             <Input label="Senha" type="password" name="senha" {...senha} />
             {loading ? (
-              <Button>Carregando</Button>
+              <button className={styles.btnAcessar}>Carregando...</button>
             ) : (
               <button className={styles.btnAcessar}>Entrar</button>
             )}
