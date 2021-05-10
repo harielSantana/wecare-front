@@ -7,7 +7,7 @@ const Header = () => {
       <div className={styles.headerContent}>
         <span className={styles.span}>WeCare</span>
         <p className={styles.paragrafo}>
-          Plataforma de contratação de serviços especializados
+          Plataforma de contratação de serviços especializados.
         </p>
       </div>
     </header>

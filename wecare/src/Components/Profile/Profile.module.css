@@ -1,12 +1,12 @@
-.ProfileContainer{
-    padding: 2rem;
-    display: flex;
+.ProfileContainer {
+  padding: 2rem;
+  display: flex;
 }
 
-
-.sidebarContent{
-    background: #F7F7F7;
-    width: 100%;
-    border-radius: 0 5px 5px 0;
-
+.sidebarContent {
+  background: #f7f7f7;
+  width: 100%;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  justify-content: center;
 }

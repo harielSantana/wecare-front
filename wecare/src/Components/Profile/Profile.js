@@ -7,9 +7,6 @@ import Payment from './Payment/Payment'
 import AsideProfile from './Aside/AsideProfile';
 
 const Profile = () => {
-
-
-
   return (
     <div className={styles.ProfileContainer}>
       <AsideProfile/>

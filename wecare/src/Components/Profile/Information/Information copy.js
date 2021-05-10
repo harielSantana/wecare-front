@@ -1,37 +1,28 @@
 import React, { useState } from 'react';
+import styles from './Information.module.css';
 
 const Information = () => {
   const [baseImage, setBaseImage] = useState('');
 
-  function handleSubmit(base64) {
-    var myHeaders = new Headers();
-    myHeaders.append('Authorization', 'Client-ID aa5f9a15c7101dd');
-
-    var formdata = new FormData();
-    formdata.append('image', base64.split(',')[1]);
-
-    var requestOptions = {
+  async function handleSubmit(event) {
+    const formData = new FormData();
+    formData.append('image', baseImage.split(',')[1]);
+    event.preventDefault();
+    const response = await fetch('https://api.imgur.com/3/image', {
       method: 'POST',
-      headers: myHeaders,
-      body: formdata,
+      headers: {
+        Authorization: 'Client-ID aa5f9a15c7101dd',
+      },
+      body: formData,
       redirect: 'follow',
-    };
-
-    fetch('https://api.imgur.com/3/image', requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        var a = JSON.stringify(result);
-        console.log(a);
-        console.log(result);
-      })
-      .catch((error) => console.log('error', error));
+    });
+    const { link } = await response.json();
   }
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
     setBaseImage(base64);
-    handleSubmit(base64);
   };
 
   const convertBase64 = (file) => {
@@ -48,8 +39,9 @@ const Information = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <input
+        className={styles.input}
         type="file"
         onChange={(e) => {
           uploadImage(e);
