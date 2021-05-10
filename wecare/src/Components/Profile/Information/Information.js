@@ -8,7 +8,10 @@ const Information = () => {
     myHeaders.append('Authorization', 'Client-ID aa5f9a15c7101dd');
 
     var formdata = new FormData();
-    formdata.append('image', base64.split(',')[1]);
+    formdata.append(
+      'image',
+      'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    );
 
     var requestOptions = {
       method: 'POST',
@@ -19,11 +22,7 @@ const Information = () => {
 
     fetch('https://api.imgur.com/3/image', requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        var a = JSON.stringify(result);
-        console.log(a);
-        console.log(result);
-      })
+      .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
   }
 
@@ -38,9 +37,11 @@ const Information = () => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
+
       fileReader.onload = () => {
         resolve(fileReader.result);
       };
+
       fileReader.onerror = (error) => {
         reject(error);
       };
@@ -55,6 +56,7 @@ const Information = () => {
           uploadImage(e);
         }}
       />
+      <br></br>
       <img src={baseImage} height="200px" />
       <button>Enviar</button>
     </form>

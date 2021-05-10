@@ -32,9 +32,10 @@ export const UserStorage = ({ children }) => {
         senha: password,
       });
       const response = await fetch(url, options);
-      const { token, verificado } = await response.json();
-      console.log(token, verificado);
+      const { token, iscaregiver } = await response.json();
+      console.log(token, iscaregiver);
       window.localStorage.setItem('token', token);
+      window.localStorage.setItem('iscaregiver', iscaregiver);
       navigate('/');
     } catch (err) {
       setError(err.message);
