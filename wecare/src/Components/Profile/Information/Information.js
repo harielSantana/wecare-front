@@ -7,30 +7,28 @@ const Information = () => {
     
     
     function handleSubmit(base64){
-        var base64image = base64
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Client-ID aa5f9a15c7101dd");
-
+        
         var formdata = new FormData();
-        formdata.append("image", base64image);
-        formdata.append("type", 'base64')
-
+        formdata.append("image", base64.split(",")[1]);
+        
         var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formdata,
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
         };
-
-        console.log(requestOptions)
-
-        fetch("https://api.imgur.com/3/upload", requestOptions)
-        .then(response => 
+        
+        fetch("https://api.imgur.com/3/image", requestOptions)
+          .then(response => response.text())
+          .then(result => 
             {
-                console.log(response)
-            }
-            )
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+                var a = JSON.stringify(result)
+                console.log(a)
+                console.log(result)
+            })
+          .catch(error => console.log('error', error));
     }
 
     const uploadImage = async (e) => {
