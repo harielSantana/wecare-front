@@ -1,0 +1,57 @@
+
+.sidebarProfile{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: #0096E6;
+    border-radius: 5px 0 0 5px;
+}
+
+
+.sidebarProfileHeader{
+    padding: 2rem 0 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.sidebarProfileHeader img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
+
+.sidebarProfileHeader span{
+    margin: 1rem 0 3rem 0;
+    color: white;
+    letter-spacing: 0.5px;
+    font-size: 24px;
+}
+
+
+.routeOptions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navLink{
+    display: flex;
+    justify-content:center;
+
+    width: 100%;
+    height: 4rem;
+    padding: 20px 0;
+    
+    font-family: Roboto, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+
+.navLink:hover{
+    background: white;
+    color:#0096E6;
+}
