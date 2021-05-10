@@ -50,4 +50,28 @@ export function CAREGIVER_GET(token) {
   };
 }
 
+export function USER_PHOTO_POST(body) {
+  return {
+    url: API_URL + '/photos',
+    options: {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
 
+export function CAREGIVER_PHOTO_POST(body) {
+  return {
+    url: API_URL + '/photos',
+    options: {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
