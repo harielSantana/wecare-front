@@ -1,13 +1,14 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form button {
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    color: white;
-    background: #0096e6;
+  border: none;
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  border-radius: 4px;
+  color: white;
+  background: #0096e6;
 }

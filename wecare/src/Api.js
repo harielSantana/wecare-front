@@ -50,6 +50,8 @@ export function CAREGIVER_GET(token) {
   };
 }
 
+/*PHOTO */
+
 export function USER_PHOTO_POST(body) {
   return {
     url: API_URL + '/photos',
@@ -72,6 +74,15 @@ export function CAREGIVER_PHOTO_POST(body) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
+    },
+  };
+}
+
+export function USER_PHOTO_GET(token, iscaregiver) {
+  return {
+    url: API_URL + `/Photos?token=${token}&IsCaregiver=${iscaregiver}`,
+    options: {
+      method: 'GET',
     },
   };
 }

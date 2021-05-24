@@ -21,7 +21,6 @@ const Information = () => {
     });
     const retorno = await response.json();
     const link = retorno['data']['link'];
-    console.log(link);
 
     const token = window.localStorage.getItem('token');
     const iscaregiver = window.localStorage.getItem('iscaregiver');
@@ -81,7 +80,7 @@ const Information = () => {
           uploadImage(e);
         }}
       />
-      <img src={baseImage} height="200px" />
+      <img src={baseImage} height="200px" alt="profile" />
       <button>Enviar</button>
     </form>
   );

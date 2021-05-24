@@ -9,7 +9,8 @@ import Usuario from './Components/Usuario/Usuario';
 import Cuidador from './Components/Cuidador/Cuidador';
 import Pagamento from './Components/Pagamento/Pagamento';
 import Pesquisa from './Components/Pesquisa/Pesquisa';
-import Error404 from './Components/Error404';
+import RouteError from './Components/Helper/Error404';
+import ProtectedRoute from './Components/Helper/ProtectedRoute';
 import Profile from './Components/Profile/Profile';
 import './App.css';
 
@@ -26,8 +27,8 @@ function App() {
             <Route path="/usuario/*" element={<Usuario />} />
             <Route path="/pagamento/*" element={<Pagamento />} />
             <Route path="/pesquisa/*" element={<Pesquisa />} />
-            <Route path="/profile/*" element={<Profile />} />
-            <Route path="*" element={<Error404 />} />
+            <ProtectedRoute path="/profile/*" element={<Profile />} />
+            <Route path="*" element={<RouteError />} />
           </Routes>
           <Footer />
         </UserStorage>
