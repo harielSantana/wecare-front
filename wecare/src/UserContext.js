@@ -32,10 +32,10 @@ export const UserStorage = ({ children }) => {
         senha: password,
       });
       const response = await fetch(url, options);
-      const { token, iscaregiver } = await response.json();
-      console.log(token, iscaregiver);
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('iscaregiver', iscaregiver);
+      const json = await response.json();
+      setData(json)
+      window.localStorage.setItem('token', json['token']);
+      window.localStorage.setItem('iscaregiver', json['iscaregiver']);
       navigate('/');
     } catch (err) {
       setError(err.message);
@@ -54,8 +54,10 @@ export const UserStorage = ({ children }) => {
         senha: password,
       });
       const response = await fetch(url, options);
-      const { token, verificado } = await response.json();
-      window.localStorage.setItem('token', token);
+      const json = await response.json();
+      setData(json)
+      window.localStorage.setItem('token', json['token']);
+      window.localStorage.setItem('iscaregiver', json['iscaregiver']);
       navigate('/');
     } catch (err) {
       setError(err.message);
@@ -65,29 +67,29 @@ export const UserStorage = ({ children }) => {
     }
   }
 
-  React.useEffect(() => {
-    async function autoLogin() {
-      const token = window.localStorage.getItem('token');
-      const iscaregiver = window.localStorage.getItem('iscaregiver');
-      if (token) {
-        try {
-          setError(null);
-          setLoading(true);
-          const { url, options } = TOKEN_VALIDATE_POST(token);
-          const response = await fetch(url, options);
-          if (!response.ok) throw new Error('Token inválido');
-          await getUser(token);
-        } catch (err) {
-          userLogout();
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setLogin(false);
-      }
-    }
-    autoLogin();
-  }, [userLogout]);
+  // React.useEffect(() => {
+  //   async function autoLogin() {
+  //     const token = window.localStorage.getItem('token');
+  //     const iscaregiver = window.localStorage.getItem('iscaregiver');
+  //     if (token) {
+  //       try {
+  //         setError(null);
+  //         setLoading(true);
+  //         const { url, options } = TOKEN_VALIDATE_POST(token);
+  //         const response = await fetch(url, options);
+  //         if (!response.ok) throw new Error('Token inválido');
+  //         await getUser(token);
+  //       } catch (err) {
+  //         userLogout();
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     } else {
+  //       setLogin(false);
+  //     }
+  //   }
+  //   autoLogin();
+  // }, [userLogout]);
 
   return (
     <UserContext.Provider
