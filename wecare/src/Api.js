@@ -1,4 +1,4 @@
-export const API_URL = 'https://wecareapi.azurewebsites.net/api';
+export const API_URL = process.env.REACT_APP_API_KEY;
 
 export function CAREGIVER_POST(body) {
   return {
