@@ -1,2 +1,2 @@
 # wecare-front
-WECARE - FRONT apenas
+WECARE - FRONT
