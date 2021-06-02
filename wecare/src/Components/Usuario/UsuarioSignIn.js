@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UsuarioSignIn.module.css';
 import { UserContext } from '../../UserContext';
@@ -11,7 +11,7 @@ const SignIn = () => {
   const email = useForm('email');
   const senha = useForm();
 
-  const { userLogin, error, loading } = React.useContext(UserContext);
+  const { userLogin, error, loading } = useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
