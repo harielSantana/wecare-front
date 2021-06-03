@@ -31,9 +31,10 @@ export const UserStorage = ({ children }) => {
         email: username,
         senha: password,
       });
+      console.log(process.env.REACT_APP_END_POINT);
       const response = await fetch(url, options);
       const json = await response.json();
-      setData(json)
+      setData(json);
       window.localStorage.setItem('token', json['token']);
       window.localStorage.setItem('iscaregiver', json['iscaregiver']);
       navigate('/');
@@ -55,7 +56,7 @@ export const UserStorage = ({ children }) => {
       });
       const response = await fetch(url, options);
       const json = await response.json();
-      setData(json)
+      setData(json);
       window.localStorage.setItem('token', json['token']);
       window.localStorage.setItem('iscaregiver', json['iscaregiver']);
       navigate('/');
