@@ -1,2 +1,2 @@
 # wecare-front
-esse é o repositório do front-end
+esse é o repositório do front-end.
